@@ -1,7 +1,7 @@
 package ocelot.popup.actions;
 
 import ocelot.model.request.SVNClientLoginRequest;
-import ocelot.view.dialog.SVNHistoryDialog;
+import ocelot.utils.SVNHistoryDialogStarter;
 
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
@@ -20,7 +20,10 @@ public class ChooseVersionAction implements IObjectActionDelegate {
 
     /**  */
     @SuppressWarnings("unused")
-    private Shell shell;
+    private Shell      shell;
+
+    /** 选中项 */
+    private ISelection selection;
 
     /**
      * Constructor for ChooseVersionAction.
@@ -46,29 +49,25 @@ public class ChooseVersionAction implements IObjectActionDelegate {
 
         //        SVNClient client = new SVNClient();
 
-        Object[][] data = { { "123", "2016.03.17", "sheng.oys", "提交1" },
-                { "124", "2016.03.18", "sheng.oys", "提交2" } };
+        Object[][] data = { { "", "123", "2016.03.17", "sheng.oys", "新增" },
+                { "", "124", "2016.03.18", "sheng.oys", "修改" },
+                { "", "125", "2016.03.18", "wugu", "提交2" },
+                { "", "128", "2016.03.18", "mohan", "提交2" } };
 
         SVNClientLoginRequest request = new SVNClientLoginRequest();
-
-        request.setSvnRoot("http://******");
-        request.setUserName("******");
-        request.setPassword("******");
 
         //        client.login(request);
         //        List<SVNHistoryRecordVO> historyRecordVOs = null;
         //        try {
         //            historyRecordVOs = client.getHistoryRecords(
-        //                "app/common/", null,
+        //                "app/common/service/facade/src/main/java/com/alipay/assettrans/facade/enums", null,
         //                "20160101", "20160318");
         //        } catch (Exception e) {
         //            e.printStackTrace();
         //        }
 
-        SVNHistoryDialog historyDialog = new SVNHistoryDialog(data);
+        SVNHistoryDialogStarter.createAndShowGUI(data);
         //            SVNHistoryRecordVOConvertor.convert(historyRecordVOs));
-
-        historyDialog.show();
     }
 
     /**
@@ -76,6 +75,7 @@ public class ChooseVersionAction implements IObjectActionDelegate {
      */
     @Override
     public void selectionChanged(IAction action, ISelection selection) {
+        this.selection = selection;
     }
 
 }

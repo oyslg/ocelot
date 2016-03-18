@@ -31,6 +31,7 @@ public class AnalyseModuleAction implements IObjectActionDelegate {
     @Override
     public void run(IAction action) {
         MessageDialog.openInformation(shell, "Ocelot", "分析功能模块 was executed.");
+        //        test.createAndShowGUI();
     }
 
     /* 
