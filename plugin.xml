@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            adaptable="true"
+            id="ocelot.contribution1"
+            nameFilter="*.java"
+            objectClass="org.eclipse.core.resources.IFile">
+         <menu
+               label="Hacker助手"
+               path="additions"
+               id="ocelot.menu1">
+            <separator
+                  name="group1">
+            </separator>
+         </menu>
+         <action
+               label="选择版本"
+               class="ocelot.popup.actions.ChooseVersionAction"
+               menubarPath="ocelot.menu1/group1"
+               enablesFor="1"
+               id="ocelot.newAction">
+         </action>
+         <action
+               class="ocelot.popup.actions.AnalyseModuleAction"
+               enablesFor="1"
+               id="ocelot.newAction"
+               label="模块分析"
+               menubarPath="ocelot.menu1/group1">
+         </action>
+      </objectContribution>
+   </extension>
+
+</plugin>
